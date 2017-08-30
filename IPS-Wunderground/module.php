@@ -86,8 +86,8 @@
                         SetValue($this->GetIDForIdent("Pop".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->pop);
                         SetValue($this->GetIDForIdent("Icon".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->icon);
                         SetValue($this->GetIDForIdent("Condition".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->conditions);
-                        SetValue($this->GetIDForIdent("TempLow".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->low->celsius);
-                        SetValue($this->GetIDForIdent("TempHigh".$i),$WeatherNow->forecast->simpleforecast->forecastday[$i]->high->celsius);
+                        SetValue($this->GetIDForIdent("TempLow".$i), (int)$WeatherNow->forecast->simpleforecast->forecastday[$i]->low->celsius);
+                        SetValue($this->GetIDForIdent("TempHigh".$i), (int)$WeatherNow->forecast->simpleforecast->forecastday[$i]->high->celsius);
                     }
                 }
             }
