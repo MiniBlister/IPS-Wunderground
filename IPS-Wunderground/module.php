@@ -135,7 +135,7 @@
 		 }
 	}
 	//Variablenprofil für den UVIndex erstellen
-	private function CreateVarProfileIPSWGWUVIndex() {
+	private function CreateVarProfileIPSWGWVIndex() {
 		if (!IPS_VariableProfileExists("WGW.UVIndex")) {
 			IPS_CreateVariableProfile("WGW.UVIndex", 1);
 			IPS_SetVariableProfileValues("WGW.UVIndex", 0, 12, 0);
