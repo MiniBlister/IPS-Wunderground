@@ -1,7 +1,7 @@
 <?php
 
 // Klassendefinition
-    class IPS-WundergroundWeather extends IPSModule {
+    class IPSWundergroundWeather extends IPSModule {
 	public function Create() {
             // Diese Zeile nicht löschen.
             parent::Create();
