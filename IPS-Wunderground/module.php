@@ -37,30 +37,30 @@
                 //Jetzt Variablen erstellen/löschen
                 
                 $keep = $this->ReadPropertyBoolean("FetchSummary0");
-                $this->MaintainVariable("TempHigh0", "Höchsttemperatur (heute)", 3, "Temperature", 10, $keep);
-                $this->MaintainVariable("TempLow0", "Tiefsttemperatur (heute)", 3, "Temperature", 20, $keep);
+                $this->MaintainVariable("TempHigh0", "Höchsttemperatur (heute)", 2, "Temperature", 10, $keep);
+                $this->MaintainVariable("TempLow0", "Tiefsttemperatur (heute)", 2, "Temperature", 20, $keep);
                 $this->MaintainVariable("Condition0", "Kondition (heute)", 2, "Temperature", 30, $keep);
-                $this->MaintainVariable("Icon0", "Icon (heute)", 1, "", 40, $keep);
+                $this->MaintainVariable("Icon0", "Icon (heute)", 2, "", 40, $keep);
                 $this->MaintainVariable("Pop0", "Regenwahrscheinlichkeit (heute)", 1, "", 50, $keep);
                 $this->MaintainVariable("Avehumidity0", "Luftfeuchtigkeit (heute)", 1, "", 60, $keep);
                 $this->MaintainVariable("FCT_Tag0", "Vorhersage Tag (heute)", 3, "", 70, $keep);
                 $this->MaintainVariable("FCT_Nacht0", "Vorhersage Nacht (heute)", 3, "", 80, $keep);
 
                 $keep = $this->ReadPropertyBoolean("FetchSummary1");
-                $this->MaintainVariable("TempHigh1", "Höchsttemperatur (morgen)", 3, "Temperature", 110, $keep);
-                $this->MaintainVariable("TempLow1", "Tiefsttemperatur (morgen)", 3, "Temperature", 120, $keep);
+                $this->MaintainVariable("TempHigh1", "Höchsttemperatur (morgen)", 2, "Temperature", 110, $keep);
+                $this->MaintainVariable("TempLow1", "Tiefsttemperatur (morgen)", 2, "Temperature", 120, $keep);
                 $this->MaintainVariable("Condition1", "Kondition (morgen)", 2, "Temperature", 130, $keep);
-                $this->MaintainVariable("Icon1", "Icon (morgen)", 1, "", 140, $keep);
+                $this->MaintainVariable("Icon1", "Icon (morgen)", 2, "", 140, $keep);
                 $this->MaintainVariable("Pop1", "Regenwahrscheinlichkeit (morgen)", 1, "", 150, $keep);
                 $this->MaintainVariable("Avehumidity1", "Luftfeuchtigkeit (morgen)", 1, "", 160, $keep);
                 $this->MaintainVariable("FCT_Tag1", "Vorhersage Tag (morgen)", 3, "", 70, $keep);
                 $this->MaintainVariable("FCT_Nacht1", "Vorhersage Nacht (morgen)", 3, "", 80, $keep);                
                 
                 $keep = $this->ReadPropertyBoolean("FetchSummary2");
-                $this->MaintainVariable("TempHigh2", "Höchsttemperatur (übermorgen)", 3, "Temperature", 210, $keep);
-                $this->MaintainVariable("TempLow2", "Tiefsttemperatur (übermorgen)", 3, "Temperature", 220, $keep);
+                $this->MaintainVariable("TempHigh2", "Höchsttemperatur (übermorgen)", 2, "Temperature", 210, $keep);
+                $this->MaintainVariable("TempLow2", "Tiefsttemperatur (übermorgen)", 2, "Temperature", 220, $keep);
                 $this->MaintainVariable("Condition2", "Kondition (übermorgen)", 2, "Temperature", 230, $keep);
-                $this->MaintainVariable("Icon2", "Icon (übermorgen)", 1, "", 240, $keep);
+                $this->MaintainVariable("Icon2", "Icon (übermorgen)", 2, "", 240, $keep);
                 $this->MaintainVariable("Pop2", "Regenwahrscheinlichkeit (übermorgen)", 1, "", 250, $keep);
                 $this->MaintainVariable("Avehumidity2", "Luftfeuchtigkeit (übermorgen)", 1, "", 260, $keep);
                 $this->MaintainVariable("FCT_Tag2", "Vorhersage Tag (übermorgen)", 3, "", 70, $keep);
@@ -86,8 +86,8 @@
                         SetValue($this->GetIDForIdent("Pop".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->pop);
                         SetValue($this->GetIDForIdent("Icon".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->icon);
                         SetValue($this->GetIDForIdent("Condition".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->conditions);
-                        SetValue($this->GetIDForIdent("TempLow".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->low->celsius);
-                        SetValue($this->GetIDForIdent("TempHigh".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->high->celsius);
+                        SetValue($this->GetIDForIdent("TempLow".$i), intval($WeatherNow->forecast->simpleforecast->forecastday[$i]->low->celsius));
+                        SetValue($this->GetIDForIdent("TempHigh".$i), intval($WeatherNow->forecast->simpleforecast->forecastday[$i]->high->celsius));
                     }
                 }
             }
