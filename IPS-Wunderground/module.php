@@ -81,6 +81,13 @@
                 for ($i = 0; $i <= 2; $i++) {
                     if ($this->ReadPropertyBoolean("FetchSummary".$i)) {
                         SetValue($this->GetIDForIdent("FCT_Tag".$i), $WeatherNow->forecast->txt_forecast->forecastday[$i*2]->fcttext_metric);
+                        SetValue($this->GetIDForIdent("FCT_Nacht".$i), $WeatherNow->forecast->txt_forecast->forecastday[$i*2+1]->fcttext_metric);
+                        SetValue($this->GetIDForIdent("Avehumidity".$i), $WeatherNow->simpleforecast->forecastday[$i]->avehumidity);
+                        SetValue($this->GetIDForIdent("Pop".$i), $WeatherNow->simpleforecast->forecastday[$i]->pop);
+                        SetValue($this->GetIDForIdent("Icon".$i), $WeatherNow->simpleforecast->forecastday[$i]->icon);
+                        SetValue($this->GetIDForIdent("Condition".$i), $WeatherNow->simpleforecast->forecastday[$i]->conditions);
+                        SetValue($this->GetIDForIdent("TempLow".$i), $WeatherNow->simpleforecast->forecastday[$i]->low->celsius);
+                        SetValue($this->GetIDForIdent("TempHigh".$i), $WeatherNow->simpleforecast->forecastday[$i]->high->celsius);
                     }
                 }
             }
