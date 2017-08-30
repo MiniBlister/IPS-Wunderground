@@ -1,0 +1,13 @@
+{
+    "id": "{35744f1e-992f-47a8-b1f3-1a286dd64152}",  
+    "author": "Raphael Kohrs",  
+    "name": "IP Symcon Module - IPS Wunderground",  
+    "url": "",  
+    "version": "0.1",  
+    "build": 0,  
+    "compatibility": {
+        "version": "4.3",
+        "date": 1497181917
+    },
+    "date": 1497181917
+}
