@@ -1,0 +1,29 @@
+{
+  "elements":
+  [
+        { "type": "Label", "label": "Location of the weatherstation. (e.g. pws:IBAYERNE17" },
+        
+	{ "type": "ValidationTextBox", "name": "Location", "caption": "Location" },
+	{ "type": "Label", "label": "API Key from https://www.wunderground.com/" },
+	{ "type": "ValidationTextBox", "name": "APIKey", "caption": "API Key" },
+	{ "type": "Label", "label": "Which Weatherdata should be fetched" },
+	{ "type": "CheckBox", "name": "FetchSummary", "caption": "Fetch daily forecast data" },
+        { "type": "CheckBox", "name": "FetchSummary0", "caption": "Fetch summary of today" },
+        { "type": "CheckBox", "name": "FetchSummary1", "caption": "Fetch summary of today + 1 day" },
+        { "type": "CheckBox", "name": "FetchSummary2", "caption": "Fetch summary of today + 2 day" },
+
+	{ "type": "Label", "label": "Update weatherdata every X minutes" },
+	{ "type": "IntervalBox", "name": "UpdateWeatherInterval", "caption": "Minutes" }
+
+  ],
+ "actions":
+  [ 
+	{ "type": "Button", "label": "Update Weather", "onClick": "IPSWGW_UpdateWeatherData($id);" } 
+  ],
+  "status":
+  [
+	{ "code": 101, "icon": "active", "caption": "Instance getting created!" },
+	{ "code": 102, "icon": "active", "caption": "Instance is active!" },
+	{ "code": 104, "icon": "inactive", "caption": "Instance is inactive!" }
+  ]
+}
