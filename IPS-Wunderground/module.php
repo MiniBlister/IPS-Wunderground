@@ -37,10 +37,10 @@
                 //Jetzt Variablen erstellen/löschen
                 
                 $keep = $this->ReadPropertyBoolean("FetchSummary0");
-                $this->MaintainVariable("TempHigh0", "Höchsttemperatur (heute)", 2, "Temperature", 10, $keep);
-                $this->MaintainVariable("TempLow0", "Tiefsttemperatur (heute)", 2, "Temperature", 20, $keep);
+                $this->MaintainVariable("TempHigh0", "Höchsttemperatur (heute)", 3, "Temperature", 10, $keep);
+                $this->MaintainVariable("TempLow0", "Tiefsttemperatur (heute)", 3, "Temperature", 20, $keep);
                 $this->MaintainVariable("Condition0", "Kondition (heute)", 2, "Temperature", 30, $keep);
-                $this->MaintainVariable("Icon0", "Icon (heute)", 2, "", 40, $keep);
+                $this->MaintainVariable("Icon0", "Icon (heute)", 1, "", 40, $keep);
                 $this->MaintainVariable("Pop0", "Regenwahrscheinlichkeit (heute)", 1, "", 50, $keep);
                 $this->MaintainVariable("Avehumidity0", "Luftfeuchtigkeit (heute)", 1, "", 60, $keep);
                 $this->MaintainVariable("FCT_Tag0", "Vorhersage Tag (heute)", 3, "", 70, $keep);
