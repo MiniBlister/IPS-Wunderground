@@ -84,7 +84,7 @@
                         SetValue($this->GetIDForIdent("FCT_Nacht".$i), $WeatherNow->forecast->txt_forecast->forecastday[$i*2+1]->fcttext_metric);
                         SetValue($this->GetIDForIdent("Avehumidity".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->avehumidity);
                         SetValue($this->GetIDForIdent("Pop".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->pop);
-                        SetValue($this->GetIDForIdent("Icon".$i), (int)getWeatherCondition($WeatherNow->forecast->simpleforecast->forecastday[$i]->icon));
+                        SetValue($this->GetIDForIdent("Icon".$i), (int)$this->getWeatherCondition($WeatherNow->forecast->simpleforecast->forecastday[$i]->icon));
                         SetValue($this->GetIDForIdent("Condition".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->conditions);
                         SetValue($this->GetIDForIdent("TempLow".$i), (int)$WeatherNow->forecast->simpleforecast->forecastday[$i]->low->celsius);
                         SetValue($this->GetIDForIdent("TempHigh".$i), (int)$WeatherNow->forecast->simpleforecast->forecastday[$i]->high->celsius);
