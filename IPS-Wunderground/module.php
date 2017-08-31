@@ -76,7 +76,7 @@
 	public function UpdateWeatherData() {
             if ($this->ReadPropertyBoolean("FetchSummary")) {
                 //Wetterdaten Forcast
-                $WeatherNow = $this->RequestAPI("/forecast/lang:DL/q");
+                $WeatherNow = $this->RequestAPI("/forecast/history_".date('Ymd')."/lang:DL/q");
                 $this->SendDebug("IPSWGW Forecast", print_r($WeatherNow, true), 0);
                 for ($i = 0; $i <= 2; $i++) {
                     if ($this->ReadPropertyBoolean("FetchSummary".$i)) {
