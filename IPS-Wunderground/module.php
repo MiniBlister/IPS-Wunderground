@@ -84,7 +84,7 @@
                         SetValue($this->GetIDForIdent("FCT_Nacht".$i), $WeatherNow->forecast->txt_forecast->forecastday[$i*2+1]->fcttext_metric);
                         SetValue($this->GetIDForIdent("Avehumidity".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->avehumidity);
                         SetValue($this->GetIDForIdent("Pop".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->pop);
-                        SetValue($this->GetIDForIdent("Icon".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->icon);
+                        SetValue($this->GetIDForIdent("Icon".$i), (int)getWeatherCondition($WeatherNow->forecast->simpleforecast->forecastday[$i]->icon));
                         SetValue($this->GetIDForIdent("Condition".$i), $WeatherNow->forecast->simpleforecast->forecastday[$i]->conditions);
                         SetValue($this->GetIDForIdent("TempLow".$i), (int)$WeatherNow->forecast->simpleforecast->forecastday[$i]->low->celsius);
                         SetValue($this->GetIDForIdent("TempHigh".$i), (int)$WeatherNow->forecast->simpleforecast->forecastday[$i]->high->celsius);
@@ -153,5 +153,39 @@
 			IPS_SetVariableProfileAssociation("WGW.UVIndex", 11, "%.1f", "" , 0xA80080);
 		 }
 	}
+        //Get Waether Conditions for the Icon
+        private function getWeatherCondition( $condition ){
+            $weathercondition = array (
+                 
+                "chanceflurries" => "13",
+                "chancerain" => "9",
+                "chancerain" => "9",
+                "chancesleet" => "10",
+                "chancesleet" => "42",
+                "chancesnow" => "35",
+                "chancetstorms" => "37",
+                "chancetstorms" => "37",
+                "clear" => "32",
+                "cloudy" => "26",
+                "flurries" => "13",
+                "fog" => "20",
+                "hazy" => "21",
+                "mostlycloudy" => "28",
+                "mostlysunny" => "34",
+                "partlycloudy" => "30",
+                "partlysunny" => "44",
+                "sleet" => "18",
+                "rain" => "11",
+                "sleet" => "18",
+                "snow" => "41",
+                "sunny" => "32",
+                "tstorms" => "3",
+                "tstorms" => "4",
+                "unknown" => "32",
+                
+                );
+        return $weathercondition[$condition];
+    }
+        
  }
 ?>
