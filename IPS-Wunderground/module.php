@@ -104,6 +104,8 @@
             if ($this->ReadPropertyBoolean("Fetchastronomy")) {
                 $sunrise = mktime ((int)$WeatherNow->sun_phase->sunrise->hour, (int)$WeatherNow->sun_phase->sunrise->minute);
                 SetValue($this->GetIDForIdent("Sunrise"), $sunrise);
+                $sunset = mktime ((int)$WeatherNow->sun_phase->sunset->hour, (int)$WeatherNow->sun_phase->sunset->minute);
+                SetValue($this->GetIDForIdent("Sunset"), $sunset);
    
             }
         }
