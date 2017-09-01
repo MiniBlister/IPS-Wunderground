@@ -6,12 +6,12 @@
 	{ "type": "ValidationTextBox", "name": "Location", "caption": "Location" },
 	{ "type": "Label", "label": "API Key from https://www.wunderground.com/" },
 	{ "type": "ValidationTextBox", "name": "APIKey", "caption": "API Key" },
-	{ "type": "Label", "label": "Which Weatherdata should be fetched" },
+	{ "type": "Label", "label": "Which weatherdata should be fetched" },
 	{ "type": "CheckBox", "name": "FetchSummary", "caption": "Fetch daily forecast data" },
         { "type": "CheckBox", "name": "FetchSummary0", "caption": "Fetch summary of today" },
         { "type": "CheckBox", "name": "FetchSummary1", "caption": "Fetch summary of today + 1 day" },
         { "type": "CheckBox", "name": "FetchSummary2", "caption": "Fetch summary of today + 2 day" },
-
+        { "type": "CheckBox", "name": "Fetchastronomy", "caption": "Fetch sunrace and sunset information" },
 	{ "type": "Label", "label": "Update weatherdata every X minutes" },
 	{ "type": "IntervalBox", "name": "UpdateWeatherInterval", "caption": "Minutes" }
 

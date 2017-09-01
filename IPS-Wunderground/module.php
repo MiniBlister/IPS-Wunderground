@@ -11,6 +11,7 @@
             $this->RegisterPropertyBoolean("FetchSummary0", true);
             $this->RegisterPropertyBoolean("FetchSummary1", false);
             $this->RegisterPropertyBoolean("FetchSummary2", false);
+            $this->RegisterPropertyBoolean("Fetchastronomy", true);
 
             $this->RegisterPropertyInteger("UpdateWeatherInterval", 10);
 
@@ -29,7 +30,7 @@
             parent::ApplyChanges();
             if (($this->ReadPropertyString("APIKey") != "") && ($this->ReadPropertyString("Location") != "")){
                 //Timerzeit setzen in Minuten
-                if ($this->ReadPropertyBoolean("FetchSummary")) {
+                if ($this->ReadPropertyBoolean("FetchSummary") || $this->ReadPropertyBoolean("Fetchastronomy")) {
                         $this->SetTimerInterval("UpdateWeather", $this->ReadPropertyInteger("UpdateWeatherInterval")*1000*60);
                 } else {
                         $this->SetTimerInterval("UpdateWeather", 0);
@@ -63,9 +64,13 @@
                 $this->MaintainVariable("Icon2", "Icon (übermorgen)", 2, "", 240, $keep);
                 $this->MaintainVariable("Pop2", "Regenwahrscheinlichkeit (übermorgen)", 1, "", 250, $keep);
                 $this->MaintainVariable("Avehumidity2", "Luftfeuchtigkeit (übermorgen)", 1, "", 260, $keep);
-                $this->MaintainVariable("FCT_Tag2", "Vorhersage Tag (übermorgen)", 3, "", 70, $keep);
-                $this->MaintainVariable("FCT_Nacht2", "Vorhersage Nacht (übermorgen)", 3, "", 80, $keep);
-              
+                $this->MaintainVariable("FCT_Tag2", "Vorhersage Tag (übermorgen)", 3, "", 270, $keep);
+                $this->MaintainVariable("FCT_Nacht2", "Vorhersage Nacht (übermorgen)", 3, "", 280, $keep);
+                
+                $keep = $this->ReadPropertyBoolean("Fetchastronomy");
+                $this->MaintainVariable("Sunrise", "Sonnenaufgang", 1, "~UnixTimestampTime", 300, $keep);
+                $this->MaintainVariable("Sunset", "Sonnenuntergang", 1, "~UnixTimestampTime", 310, $keep);
+                
                 //Instanz ist aktiv
                 $this->SetStatus(102);
             } else {
@@ -74,10 +79,11 @@
             }
 	}
 	public function UpdateWeatherData() {
+            $WeatherURL = $this->getAPIURL();
+            $WeatherNow = $this->RequestAPI($WeatherURL);
+            $this->SendDebug("IPSWGW Forecast", print_r($WeatherNow, true), 0);
+            //Wetterdaten Forcast;        
             if ($this->ReadPropertyBoolean("FetchSummary")) {
-                //Wetterdaten Forcast
-                $WeatherNow = $this->RequestAPI("/forecast/history_".date('Ymd')."/lang:DL/q");
-                $this->SendDebug("IPSWGW Forecast", print_r($WeatherNow, true), 0);
                 for ($i = 0; $i <= 2; $i++) {
                     if ($this->ReadPropertyBoolean("FetchSummary".$i)) {
                         SetValue($this->GetIDForIdent("FCT_Tag".$i), $WeatherNow->forecast->txt_forecast->forecastday[$i*2]->fcttext_metric);
@@ -95,7 +101,24 @@
                     }
                 }
             }
+            if ($this->ReadPropertyBoolean("Fetchastronomy")) {
+                $sunrise = mktime ((int)$WeatherNow->sun_phase->sunrise->hour, (int)$WeatherNow->sun_phase->sunrise->minute);
+                SetValue($this->GetIDForIdent("Sunrise"), $sunrise);
+   
+            }
         }
+        // Create the URL for the API request based on Fetch Properties on the Config Page
+	private function getAPIURL(){
+            $url = "/";
+            if($this->ReadPropertyBoolean("FetchSummary")) {
+                $url .= "forecast/";
+            }
+            if($this->ReadPropertyBoolean("Fetchastronomy")) {
+                $url .= "astronomy/";
+            }
+            $url .= "lang:DL/q";
+            return $url;
+        }        
 
 	private function WithoutSpecialChars($String){
 		return str_replace(array("ä", "ö", "ü", "Ä", "Ö", "Ü", "ß"), array("a", "o", "u", "A", "O", "U", "ss"), $String);
