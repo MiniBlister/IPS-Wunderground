@@ -102,9 +102,9 @@
                 }
             }
             if ($this->ReadPropertyBoolean("Fetchastronomy")) {
-                $sunrise = mktime ((int)$WeatherNow->sun_phase->sunrise->hour, (int)$WeatherNow->sun_phase->sunrise->minute);
+                $sunrise = mktime ((int)$WeatherNow->sun_phase->sunrise->hour, (int)$WeatherNow->sun_phase->sunrise->minute, 0);
                 SetValue($this->GetIDForIdent("Sunrise"), $sunrise);
-                $sunset = mktime ((int)$WeatherNow->sun_phase->sunset->hour, (int)$WeatherNow->sun_phase->sunset->minute);
+                $sunset = mktime ((int)$WeatherNow->sun_phase->sunset->hour, (int)$WeatherNow->sun_phase->sunset->minute, 0);
                 SetValue($this->GetIDForIdent("Sunset"), $sunset);
    
             }
